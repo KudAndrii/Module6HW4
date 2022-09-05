@@ -1,29 +1,40 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebAppMVC.Interfaces;
 
 namespace WebAppMVC.Controllers
 {
-    public class HomeController1 : Controller
+    public class EmployeeController : Controller
     {
-        // GET: HomeController1
+        private readonly IEmployeeService _employeeService;
+        public EmployeeController(IEmployeeService employeeService) => _employeeService = employeeService;
+
+        // GET: EmployeeController
         public ActionResult Index()
         {
-            return View();
+            var employees = _employeeService.Get();
+            return View(employees);
         }
 
-        // GET: HomeController1/Details/5
+        // GET: EmployeeController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var employee = _employeeService.GetById(id);
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+            return View(employee);
         }
 
-        // GET: HomeController1/Create
+        // GET: EmployeeController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: HomeController1/Create
+        // POST: EmployeeController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -38,13 +49,13 @@ namespace WebAppMVC.Controllers
             }
         }
 
-        // GET: HomeController1/Edit/5
+        // GET: EmployeeController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: HomeController1/Edit/5
+        // POST: EmployeeController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -59,13 +70,13 @@ namespace WebAppMVC.Controllers
             }
         }
 
-        // GET: HomeController1/Delete/5
+        // GET: EmployeeController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: HomeController1/Delete/5
+        // POST: EmployeeController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)

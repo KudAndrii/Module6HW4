@@ -11,7 +11,7 @@ namespace WebAppMVC.Interfaces
 
         public int Post(Employee employee);
 
-        public Employee Put(Employee employee);
+        public int Put(Employee employee);
 
         public bool Delete(int id);
     }
