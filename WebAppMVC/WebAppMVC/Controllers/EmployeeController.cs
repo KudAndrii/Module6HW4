@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebAppMVC.Interfaces;
+using WebAppMVC.Models;
 
 namespace WebAppMVC.Controllers
 {
@@ -36,59 +37,32 @@ namespace WebAppMVC.Controllers
 
         // POST: EmployeeController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Employee employee)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _employeeService.Post(employee);
+            return RedirectToAction("Index");
         }
 
         // GET: EmployeeController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Employee employee = _employeeService.GetById(id);
+            return View("Create", employee);
         }
 
-        // POST: EmployeeController/Edit/5
+        // POST: EmployeeController/Edit
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Employee employee)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _employeeService.Put(employee);
+            return RedirectToAction("Index");
         }
 
         // GET: EmployeeController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
-        }
-
-        // POST: EmployeeController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _employeeService.Delete(id);
+            return RedirectToAction("Index");
         }
     }
 }

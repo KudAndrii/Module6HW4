@@ -3,23 +3,29 @@
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    string actionName = Model == null ? "Create" : "Edit";
 }
 
 <h1>Create employee</h1>
 
-<from method="post" action="Create">
-    <div class="mb-3">
-        <label for="" class="form-label">Id</label>
-        <input type="number" class="form-control" asp-for="id" />
-    </div>
+<form method="post" action="@actionName">
+    @{
+        if (Model == null)
+        {
+            <div class="mb-3">
+                <label for="" class="form-label">Id</label>
+                <input type="number" class="form-control" asp-for="Id" />
+            </div>
+        }
+    }
     <div class="mb-3">
         <label for="" class="form-label">Name</label>
-        <input type="text" class="form-control" asp-for="name" />
+        <input type="text" class="form-control" placeholder="@Model?.Name" asp-for="Name" />
     </div>
     <div class="mb-3">
         <label for="" class="form-label">Age</label>
-        <input type="number" class="form-control" asp-for="age" />
+        <input type="number" class="form-control" placeholder="@Model?.Age" asp-for="Age" />
     </div>
 
-    <button type="submit" class="btn btn-outline-primary" asp-action="Index">Submit</button>
-</from>
+    <button type="submit" class="btn btn-outline-primary" asp-page-handler="Submit">Submit</button>
+</form>

@@ -26,7 +26,7 @@ namespace WebAppMVC.Services
         {
             if (id >= 0)
             {
-                return _employees.FirstOrDefault(e => e.id == id);
+                return _employees.FirstOrDefault(e => e.Id == id);
             }
             else
             {
@@ -39,7 +39,7 @@ namespace WebAppMVC.Services
             if (!_employees.Contains(employee))
             {
                 _employees.Add(employee);
-                return _employees.FirstOrDefault(e => e.id == employee.id).id;
+                return _employees.FirstOrDefault(e => e.Id == employee.Id).Id;
             }
             else
             {
@@ -50,13 +50,15 @@ namespace WebAppMVC.Services
 
         public int Put(Employee employee)
         {
-            int index = _employees.IndexOf(employee);
-            if (index == -1)
+            var element = GetById(employee.Id);
+            int index = -1;
+            if (element == null)
             {
                 _employees.Add(employee);
             }
             else
             {
+                index = _employees.IndexOf(element);
                 _employees[index] = employee;
             }
 

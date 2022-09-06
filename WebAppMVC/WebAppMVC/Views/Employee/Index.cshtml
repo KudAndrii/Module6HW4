@@ -15,6 +15,7 @@
         <thead>
             <tr>
                 <th>Name</th>
+                <th></th>
                 <th>Edit Action</th>
                 <th>Details Action</th>
                 <th>Delete Action</th>
@@ -25,17 +26,17 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.name)
+                        @item.Name
                     </td>
                     <td>
                     <td>
-                        <a asp-action="Edit" class="btn btn-outline-primary" asp-route-employeeId="@item.id">Edit</a>
+                        <a asp-action="Edit" class="btn btn-outline-primary" asp-route-id="@item.Id">Edit</a>
                     </td>
                     <td>
-                        <a asp-action="Details" class="btn btn-outline-info" asp-route-employeeId="@item.id">Details</a>
+                        <a asp-action="Details" class="btn btn-outline-info" asp-route-id="@item.Id">Details</a>
                     </td>
                     <td>
-                        <a asp-action="Delete" class="btn btn-outline-danger" asp-route-employeeId="@item.id">Delete</a>
+                        <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@item.Id">Delete</a>
                     </td>
                 </tr>
             }
