@@ -1,0 +1,25 @@
+﻿@model WebAppMVC.Models.Employee
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create employee</h1>
+
+<from method="post" action="Create">
+    <div class="mb-3">
+        <label for="" class="form-label">Id</label>
+        <input type="number" class="form-control" asp-for="id" />
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Name</label>
+        <input type="text" class="form-control" asp-for="name" />
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Age</label>
+        <input type="number" class="form-control" asp-for="age" />
+    </div>
+
+    <button type="submit" class="btn btn-outline-primary" asp-action="Index">Submit</button>
+</from>
