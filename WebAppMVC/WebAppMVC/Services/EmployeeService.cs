@@ -43,7 +43,7 @@ namespace WebAppMVC.Services
             }
             else
             {
-                return -1;
+                throw new ArgumentException("Element already exist.");
             }
 
         }

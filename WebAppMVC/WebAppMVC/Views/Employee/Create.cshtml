@@ -4,9 +4,10 @@
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
     string actionName = Model == null ? "Create" : "Edit";
+    // string methodName = Model == null ? "post" : "put";
 }
 
-<h1>Create employee</h1>
+<h1>@actionName employee</h1>
 
 <form method="post" action="@actionName">
     @{
